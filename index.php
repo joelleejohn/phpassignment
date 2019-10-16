@@ -7,12 +7,11 @@
     <title>Billing</title>
 </head>
 <body>
-<form action=""></form>
-<?php 
-
-
-?>
+<form action="">
+    <input id="numberoftickets" type="text" name="numberoftickets">
+    <input id="numtick" type="button" value="continue">
+</form>
+<script type="text/javascript" src="index.js">
+</script>
 </body>
 </html>
-<head>
-</head>
