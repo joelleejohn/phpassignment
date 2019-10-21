@@ -7,10 +7,12 @@
     <title>Billing</title>
 </head>
 <body>
-<form action="submit.php">
+<?php session_start()?>
+<?php session_destroy()?>
+<form action="submit.php" method="post">
     <input id="numberoftickets" type="text" name="numberoftickets">
     <input id="numtick" type="submit" value="continue">
-    <input type="hidden" name="hasErrored" value="True">
+    <input type="hidden" name="hasErrored" value="0">
 </form>
 <script type="text/javascript" src="index.js">
 </script>

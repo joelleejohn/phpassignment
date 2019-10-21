@@ -7,13 +7,21 @@
     <title>Order</title>
 </head>
 <body>
-    <form action="/confirm.php">
+<?php session_start()?>
+    <form action="confirm.php" method="post">
     <?php
-        for ($index = 0; $index < $_POST["numberoftickets"]; $index++){
-            echo "<input type=\"text\">";
+    if (filter_var($_POST["hasErrored"], FILTER_VALIDATE_BOOLEAN)){
+        for ($index = 0; $index < $_POST["numToAdd"]; $index++){
+            echo "<input id=\"\"type=\"text\" name=\"f{$index}\"><br>";
         }
+    } else {
+        for ($index = 0; $index < $_POST["numberoftickets"]; $index++){
+            echo "<input id=\"\"type=\"text\" name=\"f{$index}\"><br>";
+        }
+    }
     ?>
-
+    <input type="submit" value="confirm">
+    <input type="hidden" name="numberoftickets" value="{$_POST["numberoftickets"]}">
     </form>
 </body>
 </html>
