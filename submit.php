@@ -7,15 +7,13 @@
     <title>Order</title>
 </head>
 <body>
-    <form action="confirm.php">
+    <form action="/confirm.php">
     <?php
-    echo "<script>";
-    echo "console.log(".$_POST["numberoftickets"].")";
-    echo "</script>";
-        for ($index = 0; $index < $_POST["numberoftickets"]){
-
+        for ($index = 0; $index < $_POST["numberoftickets"]; $index++){
+            echo "<input type=\"text\">";
         }
     ?>
+
     </form>
 </body>
 </html>

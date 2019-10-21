@@ -9,7 +9,7 @@
 <body>
 <form action="submit.php">
     <input id="numberoftickets" type="text" name="numberoftickets">
-    <input id="numtick" type="button" value="continue">
+    <input id="numtick" type="submit" value="continue">
     <input type="hidden" name="hasErrored" value="True">
 </form>
 <script type="text/javascript" src="index.js">
