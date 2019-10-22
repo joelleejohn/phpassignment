@@ -1,0 +1,23 @@
+{
+  "name": "phpassignment",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "jquery": "^3.4.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/joelleejohn/phpassignment.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/joelleejohn/phpassignment/issues"
+  },
+  "homepage": "https://github.com/joelleejohn/phpassignment#readme"
+}
