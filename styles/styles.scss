@@ -1,0 +1,47 @@
+@import url('https://fonts.googleapis.com/css?family=Open+Sans&display=swap');
+
+body {
+    display: grid;
+    width: calc(100vw - 1rem);
+    height: 100%;
+    font-family: 'Open Sans';
+    grid-auto-flow: row;
+    place-content: center;
+}
+
+form {
+    display: grid;
+    width: calc(100% - 2rem);
+    grid-auto-flow: row;
+    gap: 10px;
+    min-height: 10rem;
+    
+
+    input {
+        border-radius: 2px;
+        height: 2rem;
+
+        &[type="button"] {
+            border: none;
+            font-size: 1.2rem;
+        }
+
+        &[type="text"] {
+            border: none;
+            background-color: rgba(0, 0, 0, 0);
+            border-bottom: 2px solid rgba(0, 100, 100, 0.5);
+            transition: border-bottom 0.2s ease-in-out;
+            transition: background-color 0.5s ease-in;
+
+            &[name="numberoftickets"] {
+                text-align: center;
+            }
+
+            &:focus {
+                outline: none;
+                background-color: rgba(0, 0, 0, 0.2);
+                border-bottom: 5px solid rgba(0, 200, 200, 0.5);
+            }
+        }
+    }
+}
