@@ -4,11 +4,12 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<link rel="stylesheet" href="css\styles.css">
 	<title>Billing</title>
 </head>
 <body>
-	<form action="">
-		<label for="numberoftickets"></label>
+	<form action="" autocomplete="off">
+		<label for="numberoftickets">Please enter the number of tickets you wish to purchase.</label>
 		<input id="numberoftickets" type="text" name="numberoftickets">
 		<input id="numtick" type="button" value="continue" onclick="render()">
 	</form>

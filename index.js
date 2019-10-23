@@ -12,9 +12,17 @@ function render(){
     }, "json");
 }
 
-function renderFormFields(data){
+/**
+ * 
+ * @param {string} formId 
+ * @param {string} buttonId 
+ * @param {Array} data 
+ */
+function renderFormFields(formId, buttonId, data){
     data.forEach(element => {
         console.log(element);
-        $("#cust").append(element);
+        $(`#${formId}`).append(element);
     });
+
+    $(`#${buttonId}`).prop("disabled", true);
 }
