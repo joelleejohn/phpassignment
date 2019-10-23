@@ -1,0 +1,7 @@
+{
+    "name": "dopef/phpassignment",
+    "type": "project",
+    "require": {
+        "league/plates": "^3.3"
+    }
+}
