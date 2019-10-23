@@ -7,5 +7,4 @@
     array_push($response, "<input type=\"button\" value=\"Confirm Names\">");
 
     echo json_encode($response);
-    
 ?>
