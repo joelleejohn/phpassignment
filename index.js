@@ -13,10 +13,10 @@ function render(){
 }
 
 /**
- * 
- * @param {string} formId 
- * @param {string} buttonId 
- * @param {Array} data 
+ *
+ * @param {string} formId
+ * @param {string} buttonId
+ * @param {Array} data
  */
 function renderFormFields(formId, buttonId, data){
     data.forEach(element => {
