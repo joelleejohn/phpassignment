@@ -1,3 +1,5 @@
 {
-    "esversion": 6
+    "esversion": 6,
+    "php.executablePath": "c:/xampp/php/php.exe",
+    "php.validate.run": "onType"
 }
