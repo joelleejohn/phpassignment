@@ -12,16 +12,18 @@
 
 <?php
 $jsonData = json_decode(file_get_contents('data/employees-final.json'));
+$_SESSION["employees"] = $jsonData;
+
 foreach($jsonData as $data){
-    
+
     echo '<tr>';
     $firstnameD = $data->firstname;
     $lastnameD = $data->lastname;
     $idD = $data->id;
-    
+
     echo '<td>'.$firstnameD.'</td>';
     echo '<td>'.$lastnameD.'</td>';
-    echo '<td><a href="user.php?id='.$idD.'">View</a></td>';
+    echo '<td><a href="templates/employee.php?id='.$idD.'">View</a></td>';
     echo '</tr>';
 }
 ?>
