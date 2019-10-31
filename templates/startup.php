@@ -1,13 +1,13 @@
 <?php	$this->layout('default', ['title' => 'A title yo']);	?>
 
-<table id="tbl">
-    <tr>
-        <thead>
+<table id="tbl" class="display">
+    <thead>
+        <tr>
             <th>First Name</th>
             <th>Last Name</th>
             <th>Link</th>
-        </thead>
-    </tr>
+        </tr>
+    </thead>
     <tbody>
 
 <?php
