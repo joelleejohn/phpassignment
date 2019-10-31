@@ -1,9 +1,11 @@
+<?php $this->layout('default', ['title' => 'Employee']); ?>
+
 <?php
 
 # Get all of the employees into an array.
 # Because my employee.php file is in a different folder, the path to my json will probably
 # be different to yours.
-$jsonData = json_decode(file_get_contents('../data/employees-final.json'));
+$jsonData = json_decode(file_get_contents('data/employees-final.json'));
 
 # array_values resets the keys of the new array
 # so we can simply select the first item

@@ -11,8 +11,7 @@
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
 <body>
-    <?php session_start() ?> 
     <?=$this->section('content')?>
-<script src="index.js"></script>
+<script src="scripts/index.js"></script>
 </body>
 </html>
