@@ -1,4 +1,4 @@
-<?php	$this->layout('default', ['title' => 'A title yo']);	?>
+<?php $this->layout('default', ['title' => 'A title yo']);	?>
 
 <table id="tbl" class="display">
     <thead>
