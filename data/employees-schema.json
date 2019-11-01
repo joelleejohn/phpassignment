@@ -1,0 +1,30 @@
+[
+  {
+    "id":"",   
+    "firstname":"",
+    "lastname":"",
+    "grade":"",
+    "jobtitle":"",
+    "nationalinsurance":"",
+    "photo":"",
+    "department":"",
+    "reports":[  ],
+    "linemanager":"",  
+    "salary":"",   
+    "currency":"",   
+    "phohe":"",   
+    "email":"",   
+    "homeemail":"",   
+    "homeaddress":"",   
+    "nextofkin":"",   
+    "employmentstart":"",
+    "employmentend":"",
+    "dob":"",
+    "previousroles":[ ],
+    "otherroles":[ ],
+    "pension":"",
+    "pensiontype":"",
+    "companycar":""
+  }
+  
+]

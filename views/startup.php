@@ -23,7 +23,7 @@ foreach($jsonData as $data){
 
     echo '<td>'.$firstnameD.'</td>';
     echo '<td>'.$lastnameD.'</td>';
-    echo '<td><a href="templates/employee.php?id='.$idD.'">View</a></td>';
+    echo '<td><a href="/phpassignment/employee/'.$idD.'">View</a></td>';
     echo '</tr>';
 }
 ?>

@@ -19,7 +19,7 @@ $employee = array_values(array_filter($jsonData,
         # and performs the callback on each element.
         # The callback will add the element to the array if the id of the element we are on
         # is the same as the id that was passed into the user.php?id= (I have renamed this to employee.php)
-        return (int)$value->id == (int)$_GET['id'];
+        return (int)$value->id == $this->data['id'];
     }
 ))[0]; // The array will only contain one element. So select the first element in the array.
 ?>
