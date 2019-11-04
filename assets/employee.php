@@ -11,6 +11,7 @@ class Employee {
     public $id;
     public $firstname;
     public $lastname;
+    public $fullname;
     public $grade;
     public $jobtitle;
     public $nationalinsurance;
@@ -46,7 +47,7 @@ class Employee {
         return $this->companycar;
     }
 
-    public static function getEmployee(int $id, array $jsonData): object
+    public static function getEmployee(int $id, array $jsonData)
     {
         return array_values(array_filter($jsonData,
             function ($value) use ($id){
@@ -60,6 +61,7 @@ class Employee {
         $this->id = $rawEmployee->id;
         $this->firstname = $rawEmployee->firstname;
         $this->lastname = $rawEmployee->lastname;
+        $this->fullname = $rawEmployee->firstname.' '.$rawEmployee->lastname;
         $this->grade = $rawEmployee->grade;
         $this->jobtitle = $rawEmployee->jobtitle;
         $this->nationalinsurance = $rawEmployee->nationalinsurance;

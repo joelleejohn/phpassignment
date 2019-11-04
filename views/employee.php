@@ -1,29 +1,35 @@
-<?php $this->layout('default', ['title' => 'Employee']); ?>
-
 <?php
+require 'vendor/autoload.php';
+use MPloyEZ\Employee;
 
-# Get all of the employees into an array.
-# Because my employee.php file is in a different folder, the path to my json will probably
-# be different to yours.
+function clog($print){
+    echo '<script>';
+    echo 'console.log('.$print.')';
+    echo '</script>';
+}
 $jsonData = json_decode(file_get_contents('data/employees-final.json'));
+$employee = new Employee($this->data['id'], $jsonData);
 
-# array_values resets the keys of the new array
-# so we can simply select the first item
-$employee = array_values(array_filter($jsonData,
+$this->layout('default', ['title' => 'Employee -'. $employee->fullname]); 
 
-    # array_filter takes an array, and a callback that will allow us to return
-    # a new array of elements that have returned true in our callback. A callback is a term for a function
-    function ($value){
-
-        # array_filter loops through every element in the array we pass it ($jsonData)
-        # and performs the callback on each element.
-        # The callback will add the element to the array if the id of the element we are on
-        # is the same as the id that was passed into the user.php?id= (I have renamed this to employee.php)
-        return (int)$value->id == $this->data['id'];
-    }
-))[0]; // The array will only contain one element. So select the first element in the array.
 ?>
 
 <!-- Simply echo the employee's first name. Do whatever else you want to after this point.
 the syntax used here is a shortcut for < ?php echo $employee->firstname?> -->
-<h1>Employee Name: <?=$employee->firstname?></h1>
+
+<div class="profile-grid">
+    <overview>
+        <h1><?=$employee->fullname?></h1>
+        <info> Information
+            <section id="main-details">
+                <snippet>Job Title: <?=$employee->jobtitle?></h2>
+                <h2>Email Address: <?=$employee->email?></h2>
+            </section>
+            <section id="extra-details">
+                <h2>Department: <?=$employee->department?></h2>
+                <h2>D.O.B: <?=$employee->dob?></h2>
+            </section>
+        </info>
+    </overview>
+
+</div>

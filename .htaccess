@@ -1,9 +1,10 @@
 php_flag display_errors on
 php_flag log_errors on
+SetEnv APP_ROOT_PATH /site/
 Options +FollowSymlinks
 RewriteEngine On
 RewriteBase /index
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_URI} !^/index.php$
-RewriteRule ^(.*)$ /phpassignment/index.php?url=$1 [L,QSA]
+RewriteRule ^(.*)$ /site/index.php?url=$1 [L,QSA]

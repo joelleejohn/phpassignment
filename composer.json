@@ -1,7 +1,14 @@
 {
     "name": "dopef/phpassignment",
     "type": "project",
+    "description": "UOC DAP405",
     "require": {
         "league/plates": "^3.3"
+    },
+
+    "autoload": {
+        "psr-4": {
+            "MPloyEZ\\": "assets/"
+        }
     }
 }

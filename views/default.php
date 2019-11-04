@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css">
-    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="<?=getenv('APP_ROOT_PATH')?>css/styles.css">
     <title><?=$this->e($title)?></title>
 </head>
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
@@ -13,6 +13,6 @@
 <body>
     <!-- This is where all of the content is rendered. -->
     <?=$this->section('content')?>
-<script src="scripts/index.js"></script>
+<script src="<?=getenv('APP_ROOT_PATH')?>scripts/index.js"></script>
 </body>
 </html>
