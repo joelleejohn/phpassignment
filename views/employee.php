@@ -21,14 +21,14 @@ the syntax used here is a shortcut for < ?php echo $employee->firstname?> -->
     <overview>
         <h1><?=$employee->fullname?></h1>
         <info> Information
-            <section id="main-details">
-                <snippet>Job Title: <?=$employee->jobtitle?></h2>
-                <h2>Email Address: <?=$employee->email?></h2>
-            </section>
-            <section id="extra-details">
-                <h2>Department: <?=$employee->department?></h2>
-                <h2>D.O.B: <?=$employee->dob?></h2>
-            </section>
+            <slice class="details" id="main-details">
+                <snippet>Job Title: <span><?=$employee->jobtitle?></span></snippet>
+                <snippet>Email Address: <span><?=$employee->email?></span></snippet>
+            </slice>
+            <slice class="details collapsible" id="extra-details">
+                <snippet>Department: <span><?=$employee->department?></span></snippet>
+                <snippet>D.O.B: <span><?=$employee->dob?></span></snippet>
+            </slice>
         </info>
     </overview>
 

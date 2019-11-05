@@ -15,7 +15,8 @@ table {
 
 .profile-grid {
     display: grid;
-    grid: "overview main" auto / calc(40vw - 1rem) auto;
+    grid: "overview main" 
+          ". main" / calc(40vw - 1rem) auto;
     padding: 1rem;
     position: absolute;
     top: 1rem;
@@ -24,11 +25,30 @@ table {
     bottom: 0;
     overview {
         display: grid;
-
+        grid-area: "overview";
         info {
             display: grid;
             grid-auto-flow: row;
+            height: calc(100% - 50%);
+
+
         }
+
+
+    }
+}
+
+slice {
+    display: flex;
+    flex-direction: column;
+}
+
+snippet {
+    color: rgba(150, 150, 150, 0.8);
+    font-size: 1.5rem;
+
+    > span {
+        color: rgba(60, 60, 60, 0.8);
     }
 }
 
