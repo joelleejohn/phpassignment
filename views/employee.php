@@ -1,13 +1,13 @@
 <?php
 require 'vendor/autoload.php';
 use MPloyEZ\Employee;
-
+session_start();
 function clog($print){
     echo '<script>';
     echo 'console.log('.$print.')';
     echo '</script>';
 }
-$jsonData = json_decode(file_get_contents('data/employees-final.json'));
+$jsonData = $_SESSION['employees'];
 $employee = new Employee($this->data['id'], $jsonData);
 
 $this->layout('default', ['title' => 'Employee -'. $employee->fullname]); 

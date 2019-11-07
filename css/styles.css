@@ -1,7 +1,7 @@
 @import url("https://fonts.googleapis.com/css?family=Open+Sans&display=swap");
 body {
   width: calc(100vw - 1rem);
-  min-height: calc(100vh - 1rem);
+  min-height: calc(200vh - 1rem);
   font-family: 'Open Sans';
   place-content: center; }
 
@@ -26,7 +26,13 @@ table {
     .profile-grid overview info {
       display: grid;
       grid-auto-flow: row;
-      height: calc(100% - 50%); }
+      height: calc(100% - 50%);
+      position: sticky;
+      top: 1rem;
+      left: 1rem;
+      right: 0;
+      bottom: 0;
+      background-color: rgba(0, 0, 0, 0.2); }
 
 slice {
   display: flex;
@@ -34,7 +40,7 @@ slice {
 
 snippet {
   color: rgba(150, 150, 150, 0.8);
-  font-size: 1.5rem; }
+  font-size: 1.2em; }
   snippet > span {
     color: rgba(60, 60, 60, 0.8); }
 

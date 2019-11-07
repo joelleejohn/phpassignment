@@ -82,7 +82,7 @@ class Employee {
         $this->previousroles = $rawEmployee->previousroles;
         $this->otherroles = $rawEmployee->otherroles;
         $this->pension = $rawEmployee->pension;
-        $this-> setcompanycar($rawEmployee->pensiontype);
+        $this-> setcompanycar($rawEmployee->companyCar);
     }
 
 
