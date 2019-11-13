@@ -33,6 +33,7 @@ class Employee {
     public $otherroles = [];
     public $pension;
     public $pensiontype;
+    private $profilepictureuri;
 
     // bool
     private $companycar;
@@ -45,6 +46,11 @@ class Employee {
     public function getcompanycar(): bool
     {
         return $this->companycar;
+    }
+
+    public function getprofilepictureuri(): string 
+    {
+        return $this->profilepictureuri;
     }
 
     public static function getEmployee(int $id, array $jsonData)
@@ -82,7 +88,7 @@ class Employee {
         $this->previousroles = $rawEmployee->previousroles;
         $this->otherroles = $rawEmployee->otherroles;
         $this->pension = $rawEmployee->pension;
-        $this-> setcompanycar($rawEmployee->companyCar);
+        $this-> setcompanycar($rawEmployee->companycar);
     }
 
 

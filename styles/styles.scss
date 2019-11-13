@@ -5,6 +5,7 @@ body {
     min-height: calc(200vh - 1rem);
     font-family: 'Open Sans';
     place-content: center;
+    background-color: rgba(0, 0, 0, 0.1);
 }
 .dataTables_wrapper {
     width: 80vw;
@@ -23,20 +24,41 @@ table {
     left: 1rem;
     right: 0;
     bottom: 0;
+    height: 100%;
     overview {
         display: grid;
         grid-area: "overview";
+        position: sticky;
         info {
             display: grid;
             grid-auto-flow: row;
-            height: calc(100% - 50%);
+            height: min-content;
+            grid-auto-rows: minmax(50px, 100px);
             position: sticky;
             top: 1rem;
             left: 1rem;
             right: 0;
-            bottom: 0;
-            background-color: rgba(0, 0, 0, 0.2);
+            background-color: rgba(255, 255, 255, 1);
+            overflow: hidden;
+            padding: 1rem;
+            border-radius: 5px;
         }
+
+        h1 {
+            place-self: center;
+            font-size: 24px;
+        }
+    }
+}
+
+fieldset {
+    border-radius: 5px;
+    border: 2px solid rgba(0, 0, 0, 0.2);
+    background-color: rgba(255, 255, 255, 1);
+    
+    legend {
+        background-color: rgba(255, 255, 255, 1);
+        border-radius: 5px;
     }
 }
 
@@ -48,6 +70,7 @@ slice {
 snippet {
     color: rgba(150, 150, 150, 0.8);
     font-size: 1.2em;
+    max-height: 100%;
 
     > span {
         color: rgba(60, 60, 60, 0.8);
@@ -84,8 +107,9 @@ form {
 
             &:focus {
                 outline: none;
-                background-color: rgba(0, 0, 0, 0.2);
-                border-bottom: 5px solid rgba(0, 200, 200, 0.5);
+                background-color: rgba(0, 0, 0, 0.08);
+                border-bottom: 2px solid rgba(0, 200, 200, 0.5);
+                padding-left: 5px;
             }
         }
     }
