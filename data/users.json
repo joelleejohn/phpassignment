@@ -1,0 +1,26 @@
+[
+    {
+        "id": 1,
+        "username": "Admin",
+        "password": "password",
+        "firstname": "Roger",
+        "lastname": "Holden",
+        "securityId": 1
+    },
+    {
+        "id":2694,
+        "username": "User",
+        "password": "password",
+        "firstname":"Jeremy",
+        "lastname":"Vaughn",
+        "securityId": 2
+    },
+    {
+        "id": 3,
+        "username": "george.lee",
+        "password": "george",
+        "firstname": "George",
+        "lastname": "Lee",
+        "securityId": 2
+    }
+]
