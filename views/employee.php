@@ -19,8 +19,11 @@ the syntax used here is a shortcut for < ?php echo $employee->firstname?> -->
 
 <div class="profile-grid">
     <overview>
-        <h1><?=$employee->fullname?></h1>
-        <img src="<?=$employee->profilepictureuri?>" alt="" srcset="">
+        <div class="card">
+            <h1><?=$employee->fullname?></h1>
+            <img src="<?=$employee->getprofilepictureuri()?>" alt="" srcset="">
+            
+        </div>
         <info><p>Information</p>
             <slice class="details" id="main-details">
                 <snippet>Job Title: <span><?=$employee->jobtitle?></span></snippet>
@@ -37,6 +40,14 @@ the syntax used here is a shortcut for < ?php echo $employee->firstname?> -->
         <fieldset>
             <legend>Tax Calculator</legend>
             <input type="text" name="" id="" readonly value="Previous Roles">
+        </fieldset>
+        </form>
+
+        <form id="upload" onsubmit="uploadImage()" method="">
+        <fieldset>
+            <legend>Profile Upload</legend>
+            <input type="file" name="profileUpload" id="profileUpload">
+            <button id="confirmUpload">Upload</button>
         </fieldset>
         </form>
     </content>

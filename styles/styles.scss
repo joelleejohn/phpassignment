@@ -43,11 +43,28 @@ table {
             padding: 1rem;
             border-radius: 5px;
         }
+        .card {
+            display: grid;
+            grid: 
+            "image" min-content
+            "name" 50px 
+            / 100%;
+            height: calc(150px + 50px);
+            padding-top: 2.5em;
+            place-items: center;
+            img {
+                grid-area: image;
+                clip-path: circle(40%);
+            }
 
-        h1 {
-            place-self: center;
-            font-size: 24px;
+            h1 {
+                grid-area: name;
+                place-self: center;
+                font-size: 24px;
+                z-index: 1;
+            }
         }
+
     }
 }
 
@@ -94,7 +111,7 @@ form {
             font-size: 1.2rem;
         }
 
-        &[type="text"] {
+        &[type="text"], &[type="password"] {
             border: none;
             background-color: rgba(0, 0, 0, 0);
             border-bottom: 2px solid rgba(0, 100, 100, 0.5);

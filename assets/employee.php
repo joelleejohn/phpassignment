@@ -88,7 +88,8 @@ class Employee {
         $this->previousroles = $rawEmployee->previousroles;
         $this->otherroles = $rawEmployee->otherroles;
         $this->pension = $rawEmployee->pension;
-        $this-> setcompanycar($rawEmployee->companycar);
+        $this->setcompanycar($rawEmployee->companycar);
+        $this->profilepictureuri = getenv('APP_ROOT_PATH').'views/images/default.png';
     }
 
 

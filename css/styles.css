@@ -39,9 +39,20 @@ table {
       overflow: hidden;
       padding: 1rem;
       border-radius: 5px; }
-    .profile-grid overview h1 {
-      place-self: center;
-      font-size: 24px; }
+    .profile-grid overview .card {
+      display: grid;
+      grid: "image" min-content "name" 50px  / 100%;
+      height: calc(150px + 50px);
+      padding-top: 2.5em;
+      place-items: center; }
+      .profile-grid overview .card img {
+        grid-area: image;
+        clip-path: circle(40%); }
+      .profile-grid overview .card h1 {
+        grid-area: name;
+        place-self: center;
+        font-size: 24px;
+        z-index: 1; }
 
 fieldset {
   border-radius: 5px;
@@ -74,15 +85,15 @@ form {
     form input[type="button"] {
       border: none;
       font-size: 1.2rem; }
-    form input[type="text"] {
+    form input[type="text"], form input[type="password"] {
       border: none;
       background-color: rgba(0, 0, 0, 0);
       border-bottom: 2px solid rgba(0, 100, 100, 0.5);
       transition: border-bottom 0.2s ease-in-out;
       transition: background-color 0.5s ease-in; }
-      form input[type="text"][name="numberoftickets"] {
+      form input[type="text"][name="numberoftickets"], form input[type="password"][name="numberoftickets"] {
         text-align: center; }
-      form input[type="text"]:focus {
+      form input[type="text"]:focus, form input[type="password"]:focus {
         outline: none;
         background-color: rgba(0, 0, 0, 0.08);
         border-bottom: 2px solid rgba(0, 200, 200, 0.5);

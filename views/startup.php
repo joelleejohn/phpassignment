@@ -9,23 +9,18 @@
         </tr>
     </thead>
     <tbody>
-
 <?php
 $jsonData = json_decode(file_get_contents('data/employees-final.json'));
 $_SESSION["employees"] = $jsonData;
-
-foreach($jsonData as $data){
-
-    echo '<tr>';
-    $firstnameD = $data->firstname;
-    $lastnameD = $data->lastname;
-    $idD = $data->id;
-
-    echo '<td>'.$firstnameD.'</td>';
-    echo '<td>'.$lastnameD.'</td>';
-    echo '<td><a href="/site/employee/'.$idD.'">View</a></td>';
-    echo '</tr>';
-}
 ?>
-    </tbody>
+<?php foreach($jsonData as $data): ?>
+    <tr>
+        <td><?=$data->firstname?></td>
+        <td><?=$data->lastname?></td>
+        <td><a href="/site/employee/<?=$data->id?>">View</a></td>
+    </tr>
+    
+
+<?php endforeach; ?>
+</tbody>
 </table>
