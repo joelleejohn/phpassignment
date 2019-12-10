@@ -62,6 +62,10 @@ class Employee {
         ))[0];
     }
 
+    /**
+     * Assigns all the values of the raw employee data to the instantiated employee object.
+     * @param object $rawEmployee
+     */
     private function assignValues($rawEmployee): void
     {
         $this->id = $rawEmployee->id;

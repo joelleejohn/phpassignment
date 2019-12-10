@@ -1,7 +1,7 @@
 @import url("https://fonts.googleapis.com/css?family=Open+Sans&display=swap");
 body {
   width: calc(100vw - 1rem);
-  min-height: calc(200vh - 1rem);
+  min-height: 100vh;
   font-family: 'Open Sans';
   place-content: center;
   background-color: rgba(0, 0, 0, 0.1); }
@@ -25,9 +25,11 @@ table {
   .profile-grid overview {
     display: grid;
     grid-area: "overview";
-    position: sticky; }
+    position: sticky;
+    grid: "high" 400px "low" 300px / 100%; }
     .profile-grid overview info {
       display: grid;
+      grid-area: low;
       grid-auto-flow: row;
       height: min-content;
       grid-auto-rows: minmax(50px, 100px);
@@ -40,19 +42,28 @@ table {
       padding: 1rem;
       border-radius: 5px; }
     .profile-grid overview .card {
+      place-self: start center;
       display: grid;
-      grid: "image" min-content "name" 50px  / 100%;
-      height: calc(150px + 50px);
+      grid-area: high;
+      grid: "image" 300px "name" 200px  / 100%;
+      height: 100%;
       padding-top: 2.5em;
-      place-items: center; }
+      place-items: center;
+      overflow-y: hidden; }
       .profile-grid overview .card img {
         grid-area: image;
-        clip-path: circle(40%); }
+        clip-path: circle(40%);
+        max-height: 100%; }
       .profile-grid overview .card h1 {
         grid-area: name;
-        place-self: center;
+        place-self: start center;
         font-size: 24px;
-        z-index: 1; }
+        z-index: 1;
+        background-color: white;
+        border-radius: 8px;
+        width: 100%;
+        height: 100%;
+        text-align: center; }
 
 fieldset {
   border-radius: 5px;
@@ -73,12 +84,30 @@ snippet {
   snippet > span {
     color: rgba(60, 60, 60, 0.8); }
 
+.centered {
+  place-self: center; }
+
+.white {
+  background-color: #fff; }
+
+.wide-grid {
+  display: grid;
+  width: 100%;
+  min-height: min-content; }
+
 form {
   display: grid;
   width: calc(100% - 2rem);
   grid-auto-flow: row;
   gap: 10px;
-  min-height: 10rem; }
+  min-height: 10rem;
+  overflow: hidden; }
+  form#login {
+    width: 50%;
+    place-content: start space-evenly; }
+  form button {
+    border: none;
+    font-size: 1.2rem; }
   form input {
     border-radius: 2px;
     height: 2rem; }

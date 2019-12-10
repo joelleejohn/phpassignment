@@ -10,7 +10,13 @@ if (isset($_GET['url']))
     $req = ['/'];
 }
 
-function handleEmployee(int $id,string ...$args)
+/**
+ * Handles requests related to individual employees
+ * @param int $id the ID of the employee we're interacting with
+ * @param string[] $args any arguements after the employee/ string
+ * @return string rendered content for the request.
+ */
+function handleEmployee(int $id, string ...$args)
 {
     global $engine;
 
@@ -32,13 +38,20 @@ function authenticateAndRender(string $page)
         // Set User from users.json
         $registeredUsers = json_decode(file_get_contents('data/users.json'), true);
 
-        $_SESSION['user'] = array_filter($registeredUsers, function($item){
+        $unverifiedUser = array_values(array_filter($registeredUsers, function($item){
             return $item['username'] == $_POST['username'] && $item['password'] == $_POST['password'];
-        })[0];
+        }));
+
+        if (count($unverifiedUser) == 1){
+            $_SESSION['user'] = $unverifiedUser;
+            echo $engine->render('startup');
+        } else {
+            echo $engine->render('login', ['failedLogin' => true]);
+        }
         
-        echo $engine->render('startup');
+        
     } else {
-        echo $engine->render('login');
+        echo $engine->render('login', ['failedLogin' => false]);
     }
 }
 
@@ -50,6 +63,8 @@ switch ($req[0]){
     case 'employee':
         echo handleEmployee((int)$req[1]);
         break;
+    case 'login':
+        echo authenticateAndRender('startup');
     default:
         print_r($req);
         break;

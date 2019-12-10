@@ -14,15 +14,11 @@ $this->layout('default', ['title' => 'Employee -'. $employee->fullname]);
 
 ?>
 
-<!-- Simply echo the employee's first name. Do whatever else you want to after this point.
-the syntax used here is a shortcut for < ?php echo $employee->firstname?> -->
-
 <div class="profile-grid">
     <overview>
         <div class="card">
             <h1><?=$employee->fullname?></h1>
             <img src="<?=$employee->getprofilepictureuri()?>" alt="" srcset="">
-            
         </div>
         <info><p>Information</p>
             <slice class="details" id="main-details">
