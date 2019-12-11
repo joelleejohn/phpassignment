@@ -18,7 +18,7 @@ $this->layout('default', ['title' => 'Employee -'. $employee->fullname]);
     <overview>
         <div class="card">
             <h1><?=$employee->fullname?></h1>
-            <img src="<?=$employee->getprofilepictureuri()?>" alt="" srcset="">
+            <img id="employeeImg" src="<?=$employee->getprofilepictureuri()?>">
         </div>
         <info><p>Information</p>
             <slice class="details" id="main-details">
@@ -32,10 +32,10 @@ $this->layout('default', ['title' => 'Employee -'. $employee->fullname]);
         </info>
     </overview>
     <content>
-        <form onsubmit="reCalculateTax()">
+        <form onsubmit="reCalculateTax()" method="post">
         <fieldset>
             <legend>Tax Calculator</legend>
-            <input type="text" name="" id="" readonly value="Previous Roles">
+            <input type="text" name="" id="" value="<?=$employee->salary?>">
         </fieldset>
         </form>
 
@@ -43,6 +43,7 @@ $this->layout('default', ['title' => 'Employee -'. $employee->fullname]);
         <fieldset>
             <legend>Profile Upload</legend>
             <input type="file" name="profileUpload" id="profileUpload">
+            <input id="employeeID" type="text" name="employeeID" value="<?=$employee->id?>" hidden>
             <button id="confirmUpload">Upload</button>
         </fieldset>
         </form>

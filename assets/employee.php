@@ -50,6 +50,10 @@ class Employee {
 
     public function getprofilepictureuri(): string 
     {
+        $path = getenv('APP_ROOT_PATH').'views/images/'.$this->id.'.jpg';
+        if (file_exists($path))
+            return $path;
+
         return $this->profilepictureuri;
     }
 
