@@ -50,11 +50,15 @@ class Employee {
 
     public function getprofilepictureuri(): string 
     {
-        $path = getenv('APP_ROOT_PATH').'views/images/'.$this->id.'.jpg';
-        if (file_exists($path))
-            return $path;
-
-        return $this->profilepictureuri;
+        clearstatcache();
+        $path = '../views/images/'.$this->id.'.jpg';
+        if (file_exists(__DIR__.'/'.$path)){
+            return  $path;
+        }
+        else {
+            return $this->profilepictureuri;
+        }
+        
     }
 
     public static function getEmployee(int $id, array $jsonData)

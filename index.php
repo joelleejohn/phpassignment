@@ -3,6 +3,12 @@ require 'vendor/autoload.php';
 $engine = new League\Plates\Engine('views/');
 $req;
 
+function console_log( $data ){
+    echo '<script>';
+    echo 'console.log('. json_encode( $data ) .')';
+    echo '</script>';
+  }
+  
 if (isset($_GET['url']))
 {
     $req = explode('/', $_GET['url']);
