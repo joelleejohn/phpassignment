@@ -1,10 +1,10 @@
 <?php
-    $response = array();
-    for($index = 0; $index < $_POST["numberoftickets"]; $index++){
-        $formField = "<br><label for\"field{$index}\">Enter Name</label><br><input type=\"text\"id=\"f{$index}\" name=\"field{$index}\"><br><br>";
-        array_push($response, $formField);
-    }
-    array_push($response, "<input type=\"button\" value=\"Confirm Names\">");
+namespace MPloyEZ;
+require 'vendor/autoload.php';
+$salary = $_GET["salary"];
+$response = array();
+$calculator = new TaxCalculator('./data/tax-tables.json');
 
-    echo json_encode($response);
+array_push($response, $calculator->CalculateTaxForEmployee($salary));
+echo json_encode($response);
 ?>
