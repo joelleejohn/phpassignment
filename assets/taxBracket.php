@@ -24,9 +24,12 @@ class TaxBracket {
 			$this->minSalary = $rawBracket["minsalary"];
 			$this->maxSalary = $rawBracket["maxsalary"];
 			$this->rate = $rawBracket["rate"];
-			$this->exceptions = $rawBracket["exceptions"];
-			foreach ($this->exceptions as $key => $ex){
-				$this->exceptions[$key] = (array)$ex;
+			$this->exceptions = [];
+			foreach ($rawBracket["exceptions"] as $key => $ex){
+				foreach ($ex as $exe=> $value){
+					$this->exceptions[$exe] = $value;
+				}
+				
 			}
 		} catch (Exception $ex){
 			$message = "Unable to create a new tax bracket. Exception: ".$ex->getMessage();
