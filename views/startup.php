@@ -1,5 +1,4 @@
 <?php
-session_start();
 $this->layout('default', ['title' => 'Employees']);	
 ?>
 

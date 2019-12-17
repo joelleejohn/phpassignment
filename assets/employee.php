@@ -61,9 +61,18 @@ class Employee {
         
     }
 
+    public static function getEmployeeFromId(int $id){
+        $jsonData = json_decode(file_get_contents('../data/employees-final.json'));
+        return Employee::getEmployeeBase($id, $jsonData);
+    }
+
     public static function getEmployee(int $id, array $jsonData)
     {
-        return array_values(array_filter($jsonData,
+        return Employee::getEmployeeBase($id, $jsonData);
+    }
+
+    private static function getEmployeeBase($id, array $data){
+        return array_values(array_filter($data,
             function ($value) use ($id){
                 return (int)$value->id == $id;
             }

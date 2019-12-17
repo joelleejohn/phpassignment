@@ -1,12 +1,6 @@
 <?php
 require 'vendor/autoload.php';
 use MPloyEZ\Employee;
-session_start();
-function clog($print){
-    echo '<script>';
-    echo 'console.log('.$print.')';
-    echo '</script>';
-}
 $jsonData = $_SESSION['employees'];
 $employee = new Employee($this->data['id'], $jsonData);
 
@@ -32,16 +26,17 @@ $this->layout('default', ['title' => 'Employee -'. $employee->fullname]);
         </info>
     </overview>
     <content>
-        <form onsubmit="reCalculateTax()" method="post">
+        <form id="calculator" onsubmit="reCalculateTax()" method="post">
         <fieldset>
             <legend>Tax Calculator</legend>
-            <input type="text" name="" id="" value="<?=$employee->salary?>">
+            <input type="text" name="salary" id="salary" value="<?=$employee->salary?>">
+            <input id="employeeID" type="text" name="id" value="<?=$employee->id?>" hidden>
         </fieldset>
         </form>
 
         <form id="upload" onsubmit="uploadImage()" method="">
         <fieldset>
-            <legend>Profile Upload</legend>
+            <legend>Profile Image Upload</legend>
             <input type="file" name="profileUpload" id="profileUpload">
             <input id="employeeID" type="text" name="employeeID" value="<?=$employee->id?>" hidden>
             <button id="confirmUpload">Upload</button>

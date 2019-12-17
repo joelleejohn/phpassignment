@@ -12,6 +12,15 @@ function updatePicture(url){
     document.getElementById('employeeImg').setAttribute('src', url);
 }
 
+function recalculateTax(){
+    const data = $('#calculator').serializeArray();
+    const formData = new FormData(document.getElementById('calculator'));
+
+    formData.entries.forEach(element => {
+        console.log(element);
+    });
+}
+
 function uploadImage(){
     const formData = new FormData();
     formData.append('file', $('#profileUpload').prop('files')[0]);
@@ -24,7 +33,6 @@ function uploadImage(){
         dataType: 'json',
         data: formData,
         success: function(data){
-            console.log(data);
             updatePicture(data[0]);
         }
     });

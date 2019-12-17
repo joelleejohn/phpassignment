@@ -61,12 +61,13 @@ class TaxCalculator {
 	 * Calculates the tax for the employee, taking into account any exceptions
 	 * established
 	 */
-	public function CalculateTaxForEmployee(int $salary){
+	public function CalculateTaxForEmployee(Employee $employee){
 		// check the if there are any exceptions.
 		$taxed = 0.00;
+		$salary = $employee->salary;
 		foreach ($this->taxBrackets as $bracket){
 			
-			$this->CalculateTaxFromSalary($taxed, $salary, $bracket, true, false);
+			$this->CalculateTaxFromSalary($taxed, $salary, $bracket, $employee->getcompanycar(), $salary > $this->taxBrackets[0]->minSalary);
 		}
 		$taxed = number_format(round($taxed, 3, PHP_ROUND_HALF_EVEN) ,2, ".", "");
 		return array("salary"=>$salary, "taxed"=> $taxed, "takeHomePay"=>number_format($salary-$taxed, 2, ".", ""));
