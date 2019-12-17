@@ -70,13 +70,13 @@ class TaxCalculator {
 			$this->CalculateTaxFromSalary($taxed, $salary, $bracket, $employee->getcompanycar(), $salary > $this->taxBrackets[0]->minSalary);
 		}
 		$taxed = number_format(round($taxed, 3, PHP_ROUND_HALF_EVEN) ,2, ".", "");
-		return array("salary"=>$salary, "taxed"=> $taxed, "takeHomePay"=>number_format($salary-$taxed, 2, ".", ""));
+		return array("salary"=>$salary, "taxed"=> $taxed, "takeHomePay"=>number_format($salary-$taxed, 2, ".", ""), "monthly" => ($salary-$taxed) / 12);
 	}
 
 	/**
 	 * Calculates the tax from the salary.
 	 */
-	public function CalculateTaxFromSalary(float &$taxed, float $salary, TaxBracket $bracket, bool $companycar, bool $supertax){
+	public function CalculateTaxFromSalary(float &$taxed, float &$salary, TaxBracket $bracket, bool $companycar, bool $supertax){
 		$rate = $bracket->rate;
 
 		if (count($bracket->exceptions) > 0){
@@ -89,8 +89,9 @@ class TaxCalculator {
 			}
 			if (isset($bracket->exceptions["Company car"]) && $companycar){
 				// set the company car tax free reduction as a float for multiplying the salary.
-				$reduced = $bracket->exceptions["Company car"] / 100;
+				$reduced = $bracket->exceptions["Company car"] / 50;
 			}
+
 			$exceptionTax = 0;
 			// use the rate of the next bracket.
 			$rate = array_values(array_filter($this->taxBrackets, function($nextBracket) use($bracket){
@@ -120,13 +121,13 @@ class TaxCalculator {
 		// If the salary falls between the bounds, 
 		// tax the difference between the minSalary for the bracket and the actual salary
 		if ($salary >= $bracket->minSalary && $salary <= $bracket->maxSalary){
-			$taxed += ($salary - $bracket->minSalary) * (float)($rate / 100);
+			$taxed += ($salary - ($bracket->minSalary)) * ($rate / 100);
 			return;
 		}
 
 		// if the salary is greater than the maxSalary, tax the standard amount
 		if ($salary > $bracket->maxSalary){
-			$taxed += ($bracket->maxSalary - $bracket->minSalary) * ($rate / 100);
+			$taxed += ($bracket->maxSalary - ($bracket->minSalary)) * ($rate / 100);
 			return;
 		}
 	}

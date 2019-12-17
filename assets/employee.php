@@ -61,9 +61,15 @@ class Employee {
         
     }
 
+    public function GetTakeHomePay(){
+        $TaxCalculator = new TaxCalculator('./data/tax-tables.json');
+        return $TaxCalculator->CalculateTaxForEmployee($this);
+    }
+
     public static function getEmployeeFromId(int $id){
-        $jsonData = json_decode(file_get_contents('../data/employees-final.json'));
-        return Employee::getEmployeeBase($id, $jsonData);
+        session_start();
+        $jsonData = $_SESSION['employees'];
+        return new Employee($id, $jsonData);
     }
 
     public static function getEmployee(int $id, array $jsonData)

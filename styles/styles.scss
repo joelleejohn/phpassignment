@@ -21,6 +21,10 @@ body {
 }
 table {
     width: 100%;
+
+    th {
+        text-align: left;
+    }
 }
 
 .profile-grid {
@@ -127,6 +131,10 @@ snippet {
 
 .white {
     background-color: #fff;
+}
+
+.right-aligned {
+    text-align: right;
 }
 
 .wide-grid {

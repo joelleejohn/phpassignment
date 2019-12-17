@@ -26,11 +26,12 @@ $this->layout('default', ['title' => 'Employee -'. $employee->fullname]);
         </info>
     </overview>
     <content>
-        <form id="calculator" onsubmit="reCalculateTax()" method="post">
+        <form id="calculator" onsubmit="recalculateTax()" method="post">
         <fieldset>
             <legend>Tax Calculator</legend>
             <input type="text" name="salary" id="salary" value="<?=$employee->salary?>">
             <input id="employeeID" type="text" name="id" value="<?=$employee->id?>" hidden>
+            <button id="recalc">Recalculate</button>
         </fieldset>
         </form>
 
