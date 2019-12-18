@@ -29,16 +29,22 @@ $this->layout('default', ['title' => 'Employee -'. $employee->fullname]);
         <form id="calculator" onsubmit="recalculateTax()" method="post">
         <fieldset>
             <legend>Tax Calculator</legend>
-            <input type="text" name="salary" id="salary" value="<?=$employee->salary?>">
+            <label>Enter a new salary value to calculate tax<input type="number" name="salary" id="salary" value="<?=$employee->salary?>"></label>
             <input id="employeeID" type="text" name="id" value="<?=$employee->id?>" hidden>
             <button id="recalc">Recalculate</button>
+            <div id="calculation" >
+                <label>Salary: <input type="text" name="profileUpload" id="salaryNew" readonly></label>
+                <label>Gross income (annual): <input type="text" name="profileUpload" id="takeHomePayNew" readonly></label>
+                <label>Gross income (monthly): <input type="text" name="profileUpload" id="monthlyNew" readonly></label>
+                <label>Amount taxed (annual): <input type="text" name="profileUpload" id="taxedNew" readonly></label>
+            </div>
         </fieldset>
         </form>
 
         <form id="upload" onsubmit="uploadImage()" method="">
         <fieldset>
             <legend>Profile Image Upload</legend>
-            <input type="file" name="profileUpload" id="profileUpload">
+            <label>Chose an image to upload<input type="file" name="profileUpload" id="profileUpload"></label>
             <input id="employeeID" type="text" name="employeeID" value="<?=$employee->id?>" hidden>
             <button id="confirmUpload">Upload</button>
         </fieldset>

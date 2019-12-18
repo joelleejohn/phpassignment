@@ -4,12 +4,6 @@ require 'vendor/autoload.php';
 $engine = new League\Plates\Engine('views/');
 $req;
 
-function console_log( $data ){
-    echo '<script>';
-    echo 'console.log('. json_encode( $data ) .')';
-    echo '</script>';
-  }
-
 if (isset($_GET['url']))
 {
     $req = explode('/', $_GET['url']);
@@ -17,22 +11,14 @@ if (isset($_GET['url']))
     $req = ['/'];
 }
 
-/**
- * Handles requests related to individual employees
- * @param int $id the ID of the employee we're interacting with
- * @param array $args any arguements after the employee/ string
- * @return string rendered content for the request.
- */
-function handleEmployee(int $id, string ...$args)
-{
-    global $engine;
-
-    return authenticateAndRender('employee', ['id' => $id]);
-}
-
 function authenticateAndRender(string $page, ...$args)
 {
     global $engine;
+
+    if ($page == 'login'){
+        echo $engine->render($page, $args[0]);
+        return;
+    }
 
     if (isset($_SESSION['user'])){
         if (count($args) > 0){
@@ -50,32 +36,39 @@ function authenticateAndRender(string $page, ...$args)
         }));
 
         if (count($unverifiedUser) == 1){
-            echo $engine->render($page, $args[0]);
+            $_SESSION['user'] = $unverifiedUser[0];
+
+            if (count($args) > 0){
+                echo $engine->render($page, $args);
+            } else {
+                echo $engine->render($page);
+            }
         } else {
-           
+           // if we've not found one verified user for these details, redirect to the login page
+           // and display the failed login message
             echo $engine->render('login', ['failedLogin' => true]);
         }
-
-
     } else {
-        echo 'hello';
         echo $engine->render('login', ['failedLogin' => false]);
     }
 }
 
 switch ($req[0]){
+    case 'employee':
+        echo authenticateAndRender('employee', ['id' => (int)$req[1]]);
+        break;
+    case 'logout':
+        session_destroy();
+        session_reset();
+        header('Location: /');
+        break;
     case '/' :
     case '' :
         echo authenticateAndRender('startup');
         break;
-    case 'employee':
-        echo $req[1];
-        echo authenticateAndRender('employee', ['id' => (int)$req[1]]);
-        break;
     case 'login':
-        echo authenticateAndRender('startup');
     default:
-        print_r($req);
+        echo authenticateAndRender('login', ['failedLogin' => false]);
         break;
 }
 ?>

@@ -42,8 +42,22 @@ function updatePicture(url){
 }
 
 function updateTax(data){
-    const formattedNumber = new Intl.NumberFormat('en-GB', { style: 'currency', currency: 'GBP' }).format(Number(data[0].takeHomePay));
-    document.getElementById('salary').setAttribute('value', formattedNumber);
+    let salary, takeHomePay, monthly, taxed;
+    salary = new Intl.NumberFormat('en-GB', { style: 'currency', currency: data[0].currency }).format(Number(data[0].salary));
+    if (data[0].currency === 'GBP'){
+        takeHomePay = new Intl.NumberFormat('en-GB', { style: 'currency', currency: data[0].currency }).format(Number(data[0].takeHomePay));
+        monthly = new Intl.NumberFormat('en-GB', { style: 'currency', currency: data[0].currency }).format(Number(data[0].monthly));
+        taxed = new Intl.NumberFormat('en-GB', { style: 'currency', currency: data[0].currency }).format(Number(data[0].taxed));
+    } else {
+        const foreign = 'foreign currency';
+        takeHomePay = foreign;
+        monthly = foreign;
+        taxed = foreign;
+    }
+    document.getElementById('salaryNew').setAttribute('value', salary);
+    document.getElementById('takeHomePayNew').setAttribute('value', takeHomePay);
+    document.getElementById('monthlyNew').setAttribute('value', monthly);
+    document.getElementById('taxedNew').setAttribute('value', taxed);
 }
 
 function recalculateTax(){

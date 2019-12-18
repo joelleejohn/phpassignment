@@ -9,8 +9,34 @@ body {
   font-family: 'Open Sans';
   place-items: center;
   place-content: center;
+  background-color: #f5eded;
+  overflow-x: hidden; }
+
+header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  place-items: center;
+  justify-content: space-between;
+  width: 100%;
+  height: 6rem;
   background-color: #fff;
-  overflow: hidden; }
+  z-index: 1;
+  box-shadow: var(--shadow); }
+  header h1 {
+    color: #c83232; }
+  header a {
+    text-decoration: none; }
+
+a:visited, a {
+  color: black;
+  text-decoration: none; }
+
+a:hover {
+  color: #c83232; }
 
 .dataTables_wrapper {
   width: 80vw;
@@ -29,7 +55,7 @@ table {
   grid: "overview main" ". main"/calc(40vw - 1rem) auto;
   padding: 1rem;
   position: absolute;
-  top: 1rem;
+  top: 6rem;
   left: 1rem;
   right: 0;
   bottom: 0;
@@ -67,7 +93,8 @@ table {
       padding-top: 2.5em;
       place-items: center;
       overflow-y: hidden;
-      box-shadow: var(--shadow); }
+      box-shadow: var(--shadow);
+      background-color: white; }
       .profile-grid overview .card img {
         grid-area: image;
         clip-path: circle(40%);
@@ -84,11 +111,15 @@ table {
 
 fieldset {
   border-radius: 5px;
-  border: 2px solid rgba(0, 0, 0, 0.2);
-  background-color: white; }
+  border: none;
+  background-color: #ffffff;
+  outline: none;
+  box-shadow: var(--shadow); }
   fieldset legend {
     background-color: white;
     border-radius: 5px; }
+  fieldset label {
+    font-size: 0.8rem; }
 
 slice {
   display: flex;
@@ -118,6 +149,16 @@ snippet {
   place-content: center;
   padding: 1rem; }
 
+#calculation {
+  display: grid;
+  grid-template-rows: repeat(4, 1fr); }
+  #calculation label {
+    margin-top: 1rem;
+    display: grid;
+    grid-template-columns: 200px 250px;
+    place-content: start;
+    height: 100%; }
+
 form {
   display: grid;
   width: 100%;
@@ -132,24 +173,29 @@ form {
   form button {
     margin-top: 1rem;
     border: none;
-    padding: 0.5rem 0;
-    background-color: #81c784;
-    font-weight: 700; }
+    padding: 0.5rem;
+    background-color: rgba(255, 100, 0, 0.7);
+    font-weight: 700;
+    border-radius: 3px; }
+    form button:hover {
+      background-color: #ff3232;
+      color: #fff; }
   form input {
     border-radius: 2px;
-    height: 2rem; }
+    height: 2rem;
+    margin: 1rem; }
     form input[type="button"] {
       border: none; }
-    form input[type="text"], form input[type="password"] {
+    form input[type="text"], form input[type="password"], form input[type="number"] {
       border: none;
       background-color: rgba(0, 0, 0, 0);
       border-bottom: 2px solid rgba(0, 100, 100, 0.5);
       transition: border-bottom 0.2s ease-in-out;
       transition: background-color 0.5s ease-in;
       padding: 0 5px; }
-      form input[type="text"][name="numberoftickets"], form input[type="password"][name="numberoftickets"] {
+      form input[type="text"][name="numberoftickets"], form input[type="password"][name="numberoftickets"], form input[type="number"][name="numberoftickets"] {
         text-align: center; }
-      form input[type="text"]:focus, form input[type="password"]:focus {
+      form input[type="text"]:focus, form input[type="password"]:focus, form input[type="number"]:focus {
         outline: none;
         background-color: rgba(0, 0, 0, 0.08);
         border-bottom: 2px solid rgba(0, 200, 200, 0.5); }

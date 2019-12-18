@@ -11,6 +11,13 @@
 <script src="<?=getenv('APP_ROOT_PATH')?>node_modules/jquery/dist/jquery.min.js"></script>
 <script src="<?=getenv('APP_ROOT_PATH')?>node_modules/datatables.net/js/jquery.dataTables.min.js"></script>
 <body>
+    <?php if (isset($_SESSION['user'])): ?>
+    <header>
+        <div class="title"><h1>MPloyEZ</h1></div>
+        <div class="status"><?='Logged in as '.$_SESSION['user']['firstname'].' '.$_SESSION['user']['lastname']?></div>
+        <div class="logout"><a href="/logout">Logout</a></div>
+    </header>
+    <?php endif; ?>
     <!-- This is where all of the content is rendered. -->
     <?=$this->section('content')?>
 <script src="<?=getenv('APP_ROOT_PATH')?>scripts/index.js"></script>

@@ -65,12 +65,17 @@ class TaxCalculator {
 		// check the if there are any exceptions.
 		$taxed = 0.00;
 		$salary = $employee->salary;
-		foreach ($this->taxBrackets as $bracket){
-			
-			$this->CalculateTaxFromSalary($taxed, $salary, $bracket, $employee->getcompanycar(), $salary > $this->taxBrackets[0]->minSalary);
+
+		// only tax if employee is paid in GBP
+		if ($employee->currency == 'GBP'){
+
+			// loop through each bracket, taxing as and when necessary. accounting for any exceptions.
+			foreach ($this->taxBrackets as $bracket){
+				$this->CalculateTaxFromSalary($taxed, $salary, $bracket, $employee->getcompanycar(), $salary > $this->taxBrackets[0]->minSalary);
+			}
 		}
-		$taxed = number_format(round($taxed, 3, PHP_ROUND_HALF_EVEN) ,2, ".", "");
-		return array("salary"=>$salary, "taxed"=> $taxed, "takeHomePay"=>number_format($salary-$taxed, 2, ".", ""), "monthly" => ($salary-$taxed) / 12);
+		// round the tax using the same rounding logic and return neccessary information.
+		return array( "currency"=> $employee->currency,"salary"=>$employee->salary, "taxed"=> $taxed, "takeHomePay"=>round($salary-$taxed, 3, PHP_ROUND_HALF_EVEN), "monthly" => ($salary-$taxed) / 12);
 	}
 
 	/**
@@ -89,25 +94,28 @@ class TaxCalculator {
 			}
 			if (isset($bracket->exceptions["Company car"]) && $companycar){
 				// set the company car tax free reduction as a float for multiplying the salary.
-				$reduced = $bracket->exceptions["Company car"] / 50;
+				$reduced = $bracket->exceptions["Company car"] / 100;
 			}
 
 			$exceptionTax = 0;
-			// use the rate of the next bracket.
-			$rate = array_values(array_filter($this->taxBrackets, function($nextBracket) use($bracket){
-				return $nextBracket->id == $bracket->id + 1;
+			// use the rate of the bracket the final salary falls into.
+			$rate = array_values(array_filter($this->taxBrackets, function($nextBracket) use($salary){
+				return $nextBracket->maxSalary >= $salary && $salary >= $nextBracket->minSalary ;
 			}))[0]->rate;
 			
 			// if the salary falls within this bracket, tax the difference between the salary and min salary.
 			// if the salary is greater than this bracket, use the maxSalary.
 			if ($salary <= $bracket->maxSalary && $salary >= $bracket->minSalary){
-				$exceptionTax = (($salary - $bracket->minSalary) * $reduced) * ($rate / 100);
+				$exceptionTax = (($salary - $bracket->minSalary - 1) * $reduced) * ($rate / 100);
+				$salary += (($salary - $bracket->minSalary - 1) * $reduced);
 			} else if ($salary > $bracket->maxSalary){
-				$exceptionTax = (($bracket->maxSalary - $bracket->minSalary) * $reduced) * ($rate / 100);
+				$exceptionTax = (($bracket->maxSalary - $bracket->minSalary - 1) * $reduced) * ($rate / 100);
+				$salary += (($bracket->maxSalary - $bracket->minSalary - 1) * $reduced);
 			} else {
 				return;
 			}
 			$taxed += $exceptionTax;
+			return;
 		}
 
 		}
@@ -121,13 +129,13 @@ class TaxCalculator {
 		// If the salary falls between the bounds, 
 		// tax the difference between the minSalary for the bracket and the actual salary
 		if ($salary >= $bracket->minSalary && $salary <= $bracket->maxSalary){
-			$taxed += ($salary - ($bracket->minSalary)) * ($rate / 100);
+			$taxed += ($salary - ($bracket->minSalary - 1)) * ($rate / 100);
 			return;
 		}
 
 		// if the salary is greater than the maxSalary, tax the standard amount
 		if ($salary > $bracket->maxSalary){
-			$taxed += ($bracket->maxSalary - ($bracket->minSalary)) * ($rate / 100);
+			$taxed += ($bracket->maxSalary - ($bracket->minSalary - 1)) * ($rate / 100);
 			return;
 		}
 	}
